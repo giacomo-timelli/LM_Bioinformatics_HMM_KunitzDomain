@@ -5,15 +5,26 @@ An HMM model was constructed and calibrated using structure-based multiple align
 This project was carried out as part of the Laboratory of Bioinformatics 1 during my MSc in Bioinformatics at the University of Bologna (Alma Mater Studiorum), aiming  to integrate approaches from structural bioinformatics, sequence analysis, and statistical validation of predictive models. 
 
 ## Needed Packages
-To ensure a smooth and reproducible workflow, we created a dedicated Conda environment including all the necessary bioinformatics tools. The following packages were installed:
+We recommend using [Conda](https://docs.conda.io/en/latest/) to manage the project environment and dependencies. The following packages were installed:
 
-CD-HIT – for clustering and comparing large sets of sequences
+**CD-HIT** – for clustering and comparing large sets of sequences
+```bash
+conda install -c bioconda cd-hit
+```
+**HMMER** – for searching sequence databases using profile hidden Markov models
+```bash
+conda install -c bioconda hmmer
+```
 
-HMMER – for searching sequence databases using profile hidden Markov models
+**BLAST+** – for performing sequence similarity searches
+```bash
+conda install -c bioconda blast
+```
 
-BLAST+ – for performing sequence similarity searches
-
-Biopython – for working with biological data in Python
+**Biopython** – for working with biological data in Python
+```bash
+conda install -c conda-forge biopython
+```
 
 This setup ensures compatibility and simplifies dependency management throughout the project.
 
