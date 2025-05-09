@@ -5,7 +5,7 @@ An HMM model was constructed and calibrated using structure-based multiple align
 This project was carried out as part of the Laboratory of Bioinformatics 1 during my **MSc in Bioinformatics at the University of Bologna** (Alma Mater Studiorum), aiming  to integrate approaches from structural bioinformatics, sequence analysis, and statistical validation of predictive models. 
 
 ## Needed Packages
-We recommend using [Conda](https://docs.conda.io/en/latest/) to manage the project environment and dependencies. The following packages were installed:
+We recommend using `[conda](https://docs.conda.io/en/latest/)` to manage the project environment and dependencies. The following packages were installed:
 
 **CD-HIT** – for clustering and reducing redundancy of protein sequences
 ```bash
@@ -28,25 +28,17 @@ conda install -c conda-forge biopython
 
 This setup ensures compatibility and simplifies dependency management throughout the project.
 
-## Repository overview
-file
-file
-file (con descrizione)
-.
-.
-.
-.
-.
-
 ## Workflow
-1
-2
-3
-4
-.
-.
-.
+### 1.Set up the conda environment
+Make sure you have `conda` installed, create a new environment and activate it.
+```bash
+conda create --name my_env
+conda activate my_env
+```
 
+### 2.Download Swiss-Prot dataset
+Access the [UniProt](https://www.uniprot.org/), filter for Swiss-Prot reviewed entries and download the complete set of protein sequences in FASTA format.
+The downloaded file, `named uniprot_sprot.fasta`, should be placed in your working directory. It will be used to extract protein sequences that do not contain Kunitz domains.
 ## Outputs
 
 file
@@ -59,4 +51,16 @@ file (descrizione)
 .
 .
 .
+
+
+## Repository overview
+file
+file
+file (con descrizione)
+.
+.
+.
+.
+.
+
 
