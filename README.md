@@ -30,7 +30,7 @@ This setup ensures compatibility and simplifies dependency management throughout
 
 ## Workflow
 ### 1. Set up the conda environment
-Make sure you have `conda` installed, create a new environment and activate it. Then, install the required dependencies using `conda` as specified in the [Required Packages](https://github.com/giacomo-timelli/LM_Bioinformatics_HMM_KunitzDomain/blob/main/README.md#needed-packages) section.
+Make sure you have `conda` installed, create a new environment and activate it. Then, install the required dependencies using `conda` as specified in the [Needed Packages](https://github.com/giacomo-timelli/LM_Bioinformatics_HMM_KunitzDomain/blob/main/README.md#needed-packages) section.
 ```bash
 conda create --name my_env
 conda activate my_env
