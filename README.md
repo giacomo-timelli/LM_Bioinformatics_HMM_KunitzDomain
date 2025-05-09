@@ -30,7 +30,7 @@ This setup ensures compatibility and simplifies dependency management throughout
 
 ## Workflow
 ### 1.Set up the conda environment
-Make sure you have `conda` installed, create a new environment and activate it. Then, install the required dependencies using `conda` as specified in the [Required Packages]() section
+Make sure you have `conda` installed, create a new environment and activate it. Then, install the required dependencies using `conda` as specified in the [Required Packages](https://github.com/giacomo-timelli/LM_Bioinformatics_HMM_KunitzDomain/blob/main/README.md#needed-packages) section.
 ```bash
 conda create --name my_env
 conda activate my_env
@@ -39,6 +39,28 @@ conda activate my_env
 ### 2.Download Swiss-Prot dataset
 Access the [UniProt](https://www.uniprot.org/), filter for Swiss-Prot reviewed entries and download the complete set of protein sequences in FASTA format.
 The downloaded file, `named uniprot_sprot.fasta`, should be placed in your working directory. It will be used to extract protein sequences that do not contain Kunitz domains.
+
+### 3.Retrieve Representative Structural IDs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Outputs
 
 file
