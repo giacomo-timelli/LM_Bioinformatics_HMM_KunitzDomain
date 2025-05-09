@@ -36,11 +36,29 @@ conda create --name my_env
 conda activate my_env
 ```
 
-### 2.Download Swiss-Prot dataset
-Access the [UniProt](https://www.uniprot.org/), filter for Swiss-Prot reviewed entries and download the complete set of protein sequences in FASTA format.
-The downloaded file, `named uniprot_sprot.fasta`, should be placed in your working directory. It will be used to extract protein sequences that do not contain Kunitz domains.
+### 2.Download RCSB PDB and Swiss-Prot datasets
+Access the [RCSB PDB](https://www.rcsb.org/) database and type this query:
+```
+Data Collection Resolution <= 3.5 AND ( Identifier = "PF00014" AND Annotation Type = "Pfam" ) AND Polymer Entity Sequence Length <= 80 AND Polymer Entity Sequence Length >= 45
+```
+> **Note:** After running the query, go to the **"Create Custom Report"** section and make sure to select the following attributes:  
+> **PDB ID**, **Entity ID**, **Sequence**, **Auth Asym ID**, and **Annotation Identifier**.
+>
+>  Eventually download the *csv file*.
+
+
+Access the [UniProt](https://www.uniprot.org/) database, filter for Swiss-Prot reviewed entries and download the complete set of protein sequences in FASTA format.
+The downloaded file, named `uniprot_sprot.fasta`, should be placed in your working directory. It will be used to extract protein sequences that do not contain Kunitz domains.
 
 ### 3.Retrieve Representative Structural IDs
+Run the script:
+```bash
+bash script_representative_kunitz.sh
+bash filtered_fasta.sh
+```
+This will create the file  `tmp_pdb_kunitz_clstr_rep_clean_ids.txt`
+> **Note:** Before submitting the list to PDBeFold, sequences are automatically filtered using the `filtered_fasta.sh` script, which removes entries that are too long, too short, or contain unstructured terminal regions. This ensures compatibility with PDBeFold and preserves the quality of the alignment and HMM.
+
 
 
 
