@@ -109,8 +109,6 @@ This repository includes:
 
 - `performance.py`: a Python script that evaluates prediction performance using E-values and known labels. It computes metrics such as accuracy (Q2), Matthews Correlation Coefficient (MCC), true positive rate (TPR), and precision (PPV). It also supports comparing results using full-sequence vs. best-domain E-values and allows manual threshold selection.
 
-- `uniprot_sprot.fasta`: the full Swiss-Prot protein dataset in FASTA format, used to extract the negative set and the complete Kunitz reference sequences.
-
 - `rcsb_pdb_custom_report_20250507065752.csv`: a custom report downloaded from the RCSB-PDB, used in the structure selection process.
 
 - `pdb_kunitz_clstr_rep.ali`: the multi-structure alignment obtained from PDBeFold should be pasted here.
