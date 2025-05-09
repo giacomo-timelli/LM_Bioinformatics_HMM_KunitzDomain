@@ -137,13 +137,13 @@ domain evaluations
 
 - `temp_overall_strali.class`: classification results for the combined dataset (positive and negative sets), used to evaluate overall performance metrics at each tested E-value threshold.
 
-## Contact
+## Contacts
 
 For any questions, clarifications, or feedback regarding this project, please feel free to contact me.  
 I will be happy to assist or provide further information as needed.
 
 **Giacomo Timelli**  
-Email: giacomo.timelli@studio.unibo.it
+Email: timelli.giacomo@gmail.com
 
 
 
