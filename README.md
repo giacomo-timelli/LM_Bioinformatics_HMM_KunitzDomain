@@ -95,49 +95,55 @@ bash create_test_sets.sh
 **Output**
  - Save detailed results to `hmm_results_strali.txt`.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Outputs
-
-file
-file
-file
-file (descrizione)
-.
-.
-.
-.
-.
-.
-
-
 ## Repository overview
-file
-file
-file (con descrizione)
-.
-.
-.
-.
-.
+
+This repository includes:
+
+- `script_representative_kunitz.sh`: a script that extracts representative PDB IDs of Kunitz domains and writes them to the file `tmp_pdb_efold_ids.txt`.
+
+- `create_str_hmm.sh`: a script that builds a structural HMM based on the alignment obtained from PDBeFold.
+
+- `create_test_sets.sh`: a script that generates the testing sets and performs 2-fold cross-validation. It eliminates overlap with the training data, calculates optimal thresholds (using MCC), and writes the results to hmm_results_strali.txt.
+
+- `get_seq.py`: a Python script used to extract specific sequences from a FASTA file (usually the full Swiss-Prot database). It matches accession numbers from the headers with a given list and prints the corresponding sequences in FASTA format. This is used to generate input FASTA files for the positive and negative datasets based on selected identifiers.
+
+- `performance.py`: a Python script that evaluates prediction performance using E-values and known labels. It computes metrics such as accuracy (Q2), Matthews Correlation Coefficient (MCC), true positive rate (TPR), and precision (PPV). It also supports comparing results using full-sequence vs. best-domain E-values and allows manual threshold selection.
+
+- `uniprot_sprot.fasta`: the full Swiss-Prot protein dataset in FASTA format, used to extract the negative set and the complete Kunitz reference sequences.
+
+- `rcsb_pdb_custom_report_20250507065752.csv`: a custom report downloaded from the RCSB-PDB, used in the structure selection process.
+
+- `pdb_kunitz_clstr_rep.ali`: the multi-structure alignment obtained from PDBeFold should be pasted here.
+
+- `allkunitz_swiss.fasta`: a FASTA file containing all Kunitz proteins, both human and non-human.
+
+## Output files
+
+Below is a list of key output files produced throughout the project:
+
+- `pdb_kunitz_clstr_rep_ali_str.hmm` includes:
+   - The optimal E-value thresholds determined by maximizing the Matthews Correlation Coefficient (MCC)
+   - Performance metrics for each test set and overall, calculated using the E-values that achieved the highest MCC, considering both full-sequence and best single
+domain evaluations
+   - Lists of false positive and false negative predictions
+ 
+- `neg_1.fasta` and `neg_2.fasta`: FASTA files containing non-Kunitz sequences, used respectively as negative set 1 and negative set 2.
+ 
+- `pos_1.fasta` and `pos_2.fasta`: FASTA files containing Kunitz-domain sequences, used as positive set 1 and positive set 2.
+ 
+- `pdb_kunitz_clstr_rep_ali_str.fasta` and `pdb_kunitz_clstr_rep_ali_str.hmm`: these files contain the multiple structural alignment of clustered representative Kunitz domains obtained from PDBeFold, along with the corresponding HMM profile built from that alignment.
+
+- `set_1_strali.class` and `set_2_strali.class`: classification results produced by `hmmsearch` using the structure-based HMM model for test set 1 and test set 2, respectively.
+
+- `temp_overall_strali.class`: classification results for the combined dataset (positive and negative sets), used to evaluate overall performance metrics at each tested E-value threshold.
+
+## Contact
+
+For any questions, clarifications, or feedback regarding this project, please feel free to contact me.  
+I will be happy to assist or provide further information as needed.
+
+**Giacomo Timelli**  
+Email: giacomo.timelli@studio.unibo.it
+
 
 
