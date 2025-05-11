@@ -1,5 +1,5 @@
 #Before to start with the analysis we have to select the ids of the proteins that are maintained by Structural alignment to remove them from the test set!
-grep ">" pdb_kunitz_rp_strali.fasta | sed 's/>//' | sed 's/:/_/' > ids_to_keep_forseq.txt
+grep ">" pdb_kunitz_clstr_rep_ali_str.fasta | sed 's/>//' | sed 's/:/_/' > ids_to_keep_forseq.txt
 
 #Use the ids to extract the 23 kunitz sequences aligned by structural alignment
 awk 'BEGIN {
@@ -11,21 +11,21 @@ awk 'BEGIN {
     keep = ids[id]
   }
   if (keep) print
-}' pdb_kunitz_rp.fasta > pdb_kunitz_rp_clean.fasta
+}' pdb_kunitz_clstr_rep.fasta > pdb_kunitz_clstr_rep_clean.fasta
 
 rm -f ids_to_keep_forseq.txt #remove the temporary file that contain the ids
 
 # Create a BLAST database from all Kunitz proteins
-makeblastdb -in all_kunitz.fasta -input_type fasta -dbtype prot -out all_kunitz.fasta
+makeblastdb -in allkunitz_swiss.fasta -input_type fasta -dbtype prot -out allkunitz_swiss.fasta
 
 # Perform BLAST search of the 23 representative sequences against the full Kunitz dataset
-blastp -query pdb_kunitz_rp_clean.fasta -db all_kunitz.fasta -out tmp_pdb_kunitz_rp_clean.blast -outfmt 7
+blastp -query pdb_kunitz_clstr_rep_clean.fasta -db allkunitz_swiss.fasta -out tmp_pdb_kunitz_rp_clean.blast -outfmt 7
 
 # Extract Uniprot IDs of sequences with high identity (≥95%) and alignment length ≥50 to remove them from the training/testing pool
 grep -v "^#" tmp_pdb_kunitz_rp_clean.blast | awk '{if ($3>=95 && $4>=50) print $2}' | sort -u | cut -d "|" -f 2 > tmp_pdb_kunitz_rp_clean_ids.txt
 
 # Extract all IDs from the full Kunitz dataset
-grep ">" all_kunitz.fasta | cut -d "|" -f 2 > tmp_all_kunitz.id
+grep ">" allkunitz_swiss.fasta | cut -d "|" -f 2 > tmp_all_kunitz.id
 
 echo 'Creating positive test files (set1 and set2)...'
 
@@ -55,10 +55,10 @@ echo 'FASTA files created.'
 
 #STRUCTURAL ALIGNMENT HMM RESULTS
 # Run hmmsearch on all positive and negative FASTA files and create tabular output. Generates .out files that contains the E-values computed on the HMM of the sequence alignment.
-hmmsearch -Z 1000 --max --tblout pos_1_strali.out pdb_kunitz_rp_strali.hmm pos_1.fasta
-hmmsearch -Z 1000 --max --tblout pos_2_strali.out pdb_kunitz_rp_strali.hmm pos_2.fasta
-hmmsearch -Z 1000 --max --tblout neg_1_strali.out pdb_kunitz_rp_strali.hmm neg_1.fasta
-hmmsearch -Z 1000 --max --tblout neg_2_strali.out pdb_kunitz_rp_strali.hmm neg_2.fasta
+hmmsearch -Z 1000 --max --tblout pos_1_strali.out pdb_kunitz_clstr_rep_ali_str.hmm pos_1.fasta
+hmmsearch -Z 1000 --max --tblout pos_2_strali.out pdb_kunitz_clstr_rep_ali_str.hmm pos_2.fasta
+hmmsearch -Z 1000 --max --tblout neg_1_strali.out pdb_kunitz_clstr_rep_ali_str.hmm neg_1.fasta
+hmmsearch -Z 1000 --max --tblout neg_2_strali.out pdb_kunitz_clstr_rep_ali_str.hmm neg_2.fasta
 # Extract E-values and build .class files with: ID, label (1/0), full sequence E-value ($5), and best domain E-value ($8)
 grep -v "^#" pos_1_strali.out | awk '{split($1,a,"|"); print a[2]"\t"1"\t"$5"\t"$8}' > pos_1_strali.class
 grep -v "^#" pos_2_strali.out | awk '{split($1,a,"|"); print a[2]"\t"1"\t"$5"\t"$8}' > pos_2_strali.class
