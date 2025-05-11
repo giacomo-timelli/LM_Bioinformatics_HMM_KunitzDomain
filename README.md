@@ -54,10 +54,10 @@ The downloaded file, named `uniprot_sprot.fasta`, should be placed in your worki
 Run the script:
 ```bash
 bash script_representative_kunitz.sh
-bash filtered_fasta.sh
+bash filter_fasta.sh
 ```
 This operation produces the `tmp_pdb_efold_ids.txt` file.
-> **Note:** Before submitting the list to PDBeFold, sequences are automatically filtered using the `filtered_fasta.sh` script, which removes entries that are longer than 80 aminoacids and shorter than 45 aminoacids. This ensures compatibility with PDBeFold,does not introduce bias and preserves the quality of the alignment and HMM.
+> **Note:** Before submitting the list to PDBeFold, sequences are automatically filtered using the `filter_fasta.sh` script, which removes entries that are longer than 80 aminoacids and shorter than 45 aminoacids. This ensures compatibility with PDBeFold,does not introduce bias and preserves the quality of the alignment and HMM.
 
 ### 4. Structural Multiple Alignment
 Access the PDBeFold Multi Alignment Tool and configure the following:
