@@ -128,7 +128,7 @@ domain evaluations
  
 - `pos_1.fasta` and `pos_2.fasta`: FASTA files containing Kunitz-domain sequences, used as positive set 1 and positive set 2.
  
-- `pdb_kunitz_clstr_rep_ali_str.fasta` and `pdb_kunitz_clstr_rep_ali_str.hmm`: these files contain the multiple structural alignment of clustered representative Kunitz domains obtained from PDBeFold, along with the corresponding HMM profile built from that alignment.
+- `pdb_kunitz_clstr_rep_ali_str.sth` and `pdb_kunitz_clstr_rep_ali_str.hmm`: these files contain the multiple structural alignment of clustered representative Kunitz domains obtained from PDBeFold, along with the corresponding HMM profile built from that alignment.
 
 - `set_1_strali.class` and `set_2_strali.class`: classification results produced by `hmmsearch` using the structure-based HMM model for test set 1 and test set 2, respectively.
 
