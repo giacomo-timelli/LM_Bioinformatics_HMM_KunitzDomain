@@ -1,5 +1,5 @@
 #Before to start with the analysis we have to select the ids of the proteins that are maintained by Structural alignment to remove them from the test set!
-grep ">" pdb_kunitz_clstr_rep_ali_str.fasta | sed 's/>//' | sed 's/:/_/' > ids_to_keep_forseq.txt
+grep ">" pdb_kunitz_clstr_rep_ali_str.sth | sed 's/>//' | sed 's/:/_/' > ids_to_keep_forseq.txt
 
 #Use the ids to extract the 23 kunitz sequences aligned by structural alignment
 awk 'BEGIN {
