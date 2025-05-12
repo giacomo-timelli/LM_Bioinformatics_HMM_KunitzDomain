@@ -7,7 +7,7 @@ input="pdb_kunitz_clstr_rep.ali"
 output="pdb_kunitz_clstr_rep_ali_str.sth"
 
 # Add Stockholm header
-echo "# STOCKHOLM 1.0" > "$output"
+echo "# STOCKHOLM " > "$output"
 
 # Convert alignment to Stockholm without introducing empty lines
 awk '
