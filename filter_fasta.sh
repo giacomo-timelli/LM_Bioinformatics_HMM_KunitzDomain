@@ -31,7 +31,7 @@ done < "$input"
 # Evaluate the final sequence at the end of the file
 if [[ -n $sequence ]]; then
   len=${#sequence}
-  if (( len >= 45 && len =< 80 )); then
+  if (( len >= 45 && len <= 80 )); then
     echo "$header" >> "$output"
     echo "$sequence" >> "$output"
   fi
