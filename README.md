@@ -88,7 +88,6 @@ bash create_test_sets.sh
  - Evaluate:
    - Set 1 using threshold from Set 2
    - Set 2 using threshold from Set 1
-   - Combined Set 1 + Set 2 using both thresholds
  - Report MCC, precision, recall, false positives, and false negatives.
 
 **Output**
@@ -132,7 +131,6 @@ domain evaluations
 
 - `set_1_strali.class` and `set_2_strali.class`: classification results produced by `hmmsearch` using the structure-based HMM model for test set 1 and test set 2, respectively.
 
-- `temp_overall_strali.class`: classification results for the combined dataset (positive and negative sets), used to evaluate overall performance metrics at each tested E-value threshold.
 
 ## Contacts
 
