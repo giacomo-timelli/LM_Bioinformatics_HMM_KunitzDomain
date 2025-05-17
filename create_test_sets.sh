@@ -72,7 +72,6 @@ comm -23 <(sort tmp_neg_2.id) <(cut -f 1 neg_2_strali.class | sort) | awk '{prin
 # Combine positive and negative sets into final training/testing files
 cat pos_1_strali.class neg_1_strali.class > set_1_strali.class
 cat pos_2_strali.class neg_2_strali.class > set_2_strali.class
-cat set_1_strali.class set_2_strali.class > temp_overall_strali.class
 
 # Automatically determine the best thresholds (based on highest MCC)
 # SET 1
@@ -116,15 +115,6 @@ awk -v num="$set1_best_evalue_full_seq" '$3 < num {print $1, $2, $3}' neg_2_stra
         #false negatives set_2
 echo -e "False negatives for set 2 considering full sequence set 1 e-value threshold:\nUniprotId|True Class|E-value" >> hmm_results_strali.txt
 awk -v num="$set1_best_evalue_full_seq" '$3 > num {print $1, $2, $3}' pos_2_strali.class | sort -grk 3 >> hmm_results_strali.txt
-    #OVERALL TEST
-echo -e "\nOVERALL PERFORMANCES USING E-VALUE THRESHOLD OF SET_1 - FULL SEQUENCES" >> hmm_results_strali.txt
-python3 performance.py temp_overall_strali.class "$set1_best_evalue_full_seq" 1 >> hmm_results_strali.txt
-        #false positives overall
-echo -e "False positives for overall considering full sequence set 1 e-value threshold:\nUniprotId|True Class|E-value" >> hmm_results_strali.txt
-awk -v num="$set1_best_evalue_full_seq" '$3 < num  {print $1, $2, $3}' neg_2_strali.class neg_1_strali.class | sort -grk 3 >> hmm_results_strali.txt
-        #false negatives overall
-echo -e "False negatives for overall considering full sequence set 1 e-value threshold:\nUniprotId|True Class|E-value" >> hmm_results_strali.txt
-awk -v num="$set1_best_evalue_full_seq" '$3 > num {print $1, $2, $3}' pos_1_strali.class pos_2_strali.class | sort -grk 3 >> hmm_results_strali.txt 
 
 #SET_2 BEST THRESHOLD USING FULL SEQUENCE E-VALUE
 echo -e "\n\n\nBEST THRESHOLD OBTAINED FROM SET_2 FULL SEQUENCE: $set2_best_evalue_full_seq" >> hmm_results_strali.txt
@@ -137,15 +127,6 @@ awk -v num="$set2_best_evalue_full_seq" '$3 < num {print $1, $2, $3}' neg_1_stra
         #false negatives set_1
 echo -e "False negatives for set 1 considering full sequence set 2 e-value threshold:\nUniprotId|True Class|E-value" >> hmm_results_strali.txt
 awk -v num="$set2_best_evalue_full_seq" '$3 > num {print $1, $2, $3}' pos_1_strali.class | sort -grk 3 >> hmm_results_strali.txt
-    #OVERALL TEST
-echo -e "\nOVERALL PERFORMANCES USING E-VALUE THRESHOLD OF SET_2 - FULL SEQUENCES" >> hmm_results_strali.txt
-python3 performance.py temp_overall_strali.class "$set2_best_evalue_full_seq" 1 >> hmm_results_strali.txt
-        #false positives overall
-echo -e "False positives for overall considering full sequence set 2 e-value threshold:\nUniprotId|True Class|E-value" >> hmm_results_strali.txt
-awk -v num="$set2_best_evalue_full_seq" '$3 < num  {print $1, $2, $3}' neg_2_strali.class neg_1_strali.class | sort -grk 3 >> hmm_results_strali.txt
-        #false negatives overall
-echo -e "False negatives for overall considering full sequence set 2 e-value threshold:\nUniprotId|True Class|E-value" >> hmm_results_strali.txt
-awk -v num="$set2_best_evalue_full_seq" '$3 > num {print $1, $2, $3}' pos_1_strali.class pos_2_strali.class | sort -grk 3 >> hmm_results_strali.txt
 
 #SET_1 BEST THRESHOLD USING SINGLE DOMAIN E-VALUE
 echo -e "\n\n\n BEST THRESHOLD OBTAINED FROM SET_1 SINGLE DOMAIN: $set1_best_evalue_one_domain" >> hmm_results_strali.txt
@@ -158,15 +139,6 @@ awk -v num="$set1_best_evalue_one_domain" '$4 < num {print $1, $2, $4}' neg_2_st
         #false negatives set_2
 echo -e "False negatives for set 2 considering single domain set 1 e-value threshold:\nUniprotId|True Class|E-value" >> hmm_results_strali.txt
 awk -v num="$set1_best_evalue_one_domain" '$4 > num {print $1, $2, $4}' pos_2_strali.class | sort -grk 3 >> hmm_results_strali.txt
-    #OVERALL
-echo -e "\nOVERALL PERFORMANCES USING E-VALUE THRESHOLD OF SET_1 - SINGLE DOMAIN" >> hmm_results_strali.txt
-python3 performance.py temp_overall_strali.class "$set1_best_evalue_one_domain" 2 >> hmm_results_strali.txt
-        #false positives overall
-echo -e "False positives for overall considering single domain set 1 e-value threshold:\nUniprotId|True Class|E-value" >> hmm_results_strali.txt
-awk -v num="$set1_best_evalue_one_domain" '$4 < num  {print $1, $2, $4}' neg_2_strali.class neg_1_strali.class | sort -grk 3 >> hmm_results_strali.txt   
-        #false negatives overall     
-echo -e "False negatives for overall considering single domain set 1 e-value threshold:\nUniprotId|True Class|E-value" >> hmm_results_strali.txt
-awk -v num="$set1_best_evalue_one_domain" '$4 > num {print $1, $2, $4}' pos_1_strali.class pos_2_strali.class | sort -grk 3 >> hmm_results_strali.txt
 
 #SET_2 BEST THRESHOLD USING SINGLE DOMAIN E-VALUE
 echo -e "\n\n\n BEST THRESHOLD OBTAINED FROM SET_2 SINGLE DOMAIN: $set2_best_evalue_one_domain" >> hmm_results_strali.txt
@@ -179,12 +151,3 @@ awk -v num="$set2_best_evalue_one_domain" '$4 < num {print $1, $2, $4}' neg_1_st
         #false negatives
 echo -e "False negatives for set 1 considering single domain set 2 e-value threshold:\nUniprotId|True Class|E-value" >> hmm_results_strali.txt
 awk -v num="$set2_best_evalue_one_domain" '$4 > num {print $1, $2, $4}' pos_1_strali.class | sort -grk 3 >> hmm_results_strali.txt
-    #OVERALL
-echo -e "\nOVERALL PERFORMANCES USING E-VALUE THRESHOLD OF SET_2 - SINGLE DOMAIN" >> hmm_results_strali.txt
-python3 performance.py temp_overall_strali.class "$set2_best_evalue_one_domain" 2 >> hmm_results_strali.txt
-        #false positives overall
-echo -e "False positives for overall considering single domain set 2 e-value threshold:\nUniprotId|True Class|E-value" >> hmm_results_strali.txt
-awk -v num="$set2_best_evalue_one_domain" '$4 < num  {print $1, $2, $4}' neg_2_strali.class neg_1_strali.class | sort -grk 3 >> hmm_results_strali.txt
-        #false negatives overall
-echo -e "False negatives for overall considering single domain set 2 e-value threshold:\nUniprotId|True Class|E-value" >> hmm_results_strali.txt
-awk -v num="$set2_best_evalue_one_domain" '$4 > num {print $1, $2, $4}' pos_1_strali.class pos_2_strali.class | sort -grk 3 >> hmm_results_strali.txt
