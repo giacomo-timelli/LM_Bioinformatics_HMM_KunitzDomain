@@ -60,9 +60,9 @@ This operation produces the `tmp_pdb_efold_ids.txt` file.
 
 ### 4. Structural Multiple Alignment
 Access the PDBeFold Multi Alignment Tool and configure the following:
- -**Mode**: set to *multiple*
- -**Input source**: select *List of PDB codes*
- -Upload the file named `tmp_pdb_efold_ids.txt`
+ - **Mode**: set to *multiple*
+ - **Input source**: select *List of PDB codes*
+ - Upload the file named `tmp_pdb_efold_ids.txt`
  
 Once the alignment is complete, click on *Download FASTA Alignment*.
 Copy the contents of the downloaded file and paste them into `pdb_kunitz_clstr_rep.ali`.
